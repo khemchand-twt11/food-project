@@ -7,7 +7,7 @@ menuRoute.get("/:searchQuery", async (req, res) => {
     const searchTerm = req.params.searchQuery;
     console.log(searchTerm);
     let menu = await menuModel.find({
-      description: { $regex: new RegExp(searchTerm, "i") },
+      type: { $regex: new RegExp(searchTerm, "i") },
     });
     console.log(menu);
     // let menu = await menuModel.find();
