@@ -24,7 +24,9 @@ menuRoute.get("/", async (req, res) => {
   try {
     const searchTerm = req.query.item;
 
-    let menu = await menuModel.find({ type: searchTerm });
+    let menu = await menuModel
+      .find(searchTerm ? { type: searchTerm } : { type: "deals" })
+      .limit(searchTerm ? undefined : 10);
     console.log(menu);
     res.send({ msg: "successfull!", data: menu });
   } catch (error) {
