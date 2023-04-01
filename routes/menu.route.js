@@ -5,7 +5,7 @@ const menuRoute = express.Router();
 menuRoute.get("/:searchQuery", async (req, res) => {
   try {
     const searchTerm = req.params.searchQuery;
-    console.log(searchTerm);
+
     let menu = await menuModel.find({
       $or: [
         { title: { $regex: new RegExp(searchTerm, "i") } },
