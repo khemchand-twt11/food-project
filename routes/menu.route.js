@@ -15,7 +15,7 @@ menuRoute.get("/:searchQuery", async (req, res) => {
     console.log(menu);
     res.send({ msg: "successfull!", data: menu });
   } catch (error) {
-    res.status(400).send({ error });
+    res.status(400).send({ error: error.message });
   }
 });
 
