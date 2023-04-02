@@ -34,4 +34,14 @@ cartRoute.post("/", async (req, res) => {
     res.status(400).send({ msg: error.message });
   }
 });
+
+cartRoute.get("/", async (req, res) => {
+  try {
+    const { userId } = req.body;
+    const cartItems = await cartModel.find({ userId });
+    res.status(200).send({ msg: "success", data: cartItems });
+  } catch (error) {
+    res.status(400).send({ msg: error.message });
+  }
+});
 module.exports = { cartRoute };
