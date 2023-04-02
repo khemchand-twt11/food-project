@@ -14,6 +14,7 @@ cartRoute.post("/", async (req, res) => {
       res.status(200).send({ msg: "product Already in Cart!" });
     } else {
       const menuItem = await menuModel.findById(menuId);
+      console.log("menuItem", menuItem);
       const cartItem = new cartModel({
         menuId,
         userId,
