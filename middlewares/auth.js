@@ -5,7 +5,7 @@ const authMiddleware = async (req, res, next) => {
   try {
     if (token) {
       let decoded = jwt.verify(token, process.env.KEY);
-      req.body.userID = decoded.userID;
+      req.body.userId = decoded.userId;
       next();
     } else {
       return res.status(400).send({

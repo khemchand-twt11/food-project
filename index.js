@@ -4,6 +4,7 @@ const cors = require("cors");
 const { userRoute } = require("./routes/user.route");
 const { authMiddleware } = require("./middlewares/auth");
 const { menuRoute } = require("./routes/menu.route");
+const { cartRoute } = require("./routes/cart.route");
 // const { notesRoute } = require("./routers/notes.routes");
 require("dotenv").config();
 
@@ -18,7 +19,7 @@ app.get("/", (req, res) => {
 app.use("/user", userRoute);
 app.use("/menu", menuRoute);
 app.use(authMiddleware);
-// app.use("/notes", notesRoute);
+app.use("/cart", cartRoute);
 app.listen(process.env.PORT, async () => {
   try {
     await connection;
