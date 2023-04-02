@@ -15,7 +15,17 @@ cartRoute.post("/", async (req, res) => {
     } else {
       const menuItem = await menuModel.findById(menuId);
       const { _id, ...newMenuItem } = menuItem;
-      const cartItem = new cartModel({ userId, menuId, ...newMenuItem });
+      const cartItem = new cartModel({
+        userId,
+        menuId,
+        img: newMenuItem.img,
+        title: newMenuItem.title,
+        description: newMenuItem.description,
+        label: newMenuItem.label,
+        cost: newMenuItem.cost,
+        type: newMenuItem.type,
+        food_type: newMenuItem.food_type,
+      });
       await cartItem.save();
       console.log(cartItem);
       res.status(200).send({ msg: "Product Added to the Cart!" });
