@@ -14,17 +14,16 @@ cartRoute.post("/", async (req, res) => {
       res.status(200).send({ msg: "product Already in Cart!" });
     } else {
       const menuItem = await menuModel.findById(menuId);
-      const { _id, ...newMenuItem } = menuItem;
       const cartItem = new cartModel({
         menuId,
         userId,
-        img: newMenuItem.img,
-        title: newMenuItem.title,
-        description: newMenuItem.description,
-        label: newMenuItem.label,
-        cost: newMenuItem.cost,
-        type: newMenuItem.type,
-        food_type: newMenuItem.food_type,
+        img: menuItem.img,
+        title: menuItem.title,
+        description: menuItem.description,
+        label: menuItem.label,
+        cost: menuItem.cost,
+        type: menuItem.type,
+        food_type: menuItem.food_type,
       });
       await cartItem.save();
       console.log(cartItem);
