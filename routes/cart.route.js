@@ -16,8 +16,8 @@ cartRoute.post("/", async (req, res) => {
       const menuItem = await menuModel.findById(menuId);
       const { _id, ...newMenuItem } = menuItem;
       const cartItem = new cartModel({
-        userId,
         menuId,
+        userId,
         img: newMenuItem.img,
         title: newMenuItem.title,
         description: newMenuItem.description,

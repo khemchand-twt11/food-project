@@ -37,7 +37,7 @@ userRoute.post("/login", async (req, res) => {
       if (result) {
         res.status(200).send({
           msg: "Login Successful",
-          token: jwt.sign({ userID: user._id }, process.env.KEY, {
+          token: jwt.sign({ userId: user._id }, process.env.KEY, {
             expiresIn: "5h",
           }),
         });
