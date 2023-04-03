@@ -44,4 +44,15 @@ cartRoute.get("/", async (req, res) => {
     res.status(400).send({ msg: error.message });
   }
 });
+cartRoute.delete("/", async (req, res) => {
+  try {
+    const { cartId, userId } = req.body;
+    const cartItem = await cartModel.findOneAndDelete({ _id: cartId });
+    const cartItems = await cartModel.find({ userId });
+    res.status(200).send({ msg: "success", data: cartItems });
+  } catch (error) {
+    res.status(400).send({ msg: error.message });
+  }
+});
+
 module.exports = { cartRoute };
